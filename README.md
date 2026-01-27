@@ -5,4 +5,5 @@ v2026.1.27
 # Workflow snippets
 ```bash
 npx create-next-app@latest my-app --yes
+npm install zod
 ```
