@@ -26,6 +26,9 @@ export const PageRegistration:FC = () => {
             <a href="/login">
               Continue to login
             </a>
+            <a href="/registration">
+              Try again
+            </a>
           </article>
         )}
 
