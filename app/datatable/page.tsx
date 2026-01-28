@@ -1,24 +1,110 @@
 'use client';
 
 import { useState, useEffect, FC, Fragment } from 'react';
+import { SideLoading as Loading } from '@/components/SideLoading';
 import { TableExtendedColumns } from '@/components/TableExtendedColumns';
+import {
+  fetchDataBalance,
+  fetchDataCurrenciesMapping,
+  fetchDataNotFound,
+  IDataResponseCollection,
+  IDataResponseDocument,
+  IDocument,
+} from './data';
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Interfaces
 
-export interface IObject {
-  [key:string]: any;
-}
-
 export interface IBalanceRecord {
-  id: string | number;
-  amount: string | number;
+  id?: string | number;
+  amount?: string | number;
   name?: string | number;
+  value?: string | number;
+  [key: string]: string | number;
+};
+
+export interface ICurrenciesMapping {
+  [key: string | number]: string | number;
 };
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Page
 
 export const PageDataTable:FC = () => {
+
+  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Page: Data loading
+
+  const [rawDataBalance, setRawDataBalance] = useState<IDocument[] | null>(null);
+  const [rawDataCurrencies, setRawDataCurrencies] = useState<IDocument | null>(null);
+  const [rawDataNotFound, setRawDataNotFound] = useState<IDocument[] | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [loadingState, setLoadingState] = useState({
+    balance: false,
+    currencies: false,
+    notFound: false,
+  });
+  const [loadingError, setLoadingError] = useState({
+    balance: false,
+    currencies: false,
+    notFound: false,
+  });
+  
+  // syntax shortcut
+  const forAll = (obj, val) => Object.keys(obj).reduce((o,i)=>({...o,[i]:val}),{});
+
+  const fetchAllData = async () => {
+    setLoadingState(forAll(loadingState, true));
+    setLoadingError(forAll(loadingError, false));
+
+    const responseBalance:IDataResponseCollection = await fetchDataBalance();
+    const responseCurrencies:IDataResponseDocument = await fetchDataCurrenciesMapping();
+    const responseNotFound:IDataResponseCollection = await fetchDataNotFound();
+
+    setRawDataBalance(responseBalance.data);
+    setRawDataCurrencies(responseCurrencies.data);
+    setRawDataNotFound(responseNotFound.data);
+
+    setLoadingError({
+      balance: !responseBalance.success,
+      currencies: !responseCurrencies.success,
+      notFound: !responseNotFound.success,
+    });
+    setLoadingState(forAll(loadingState, false));
+  };
+
+  useEffect(() => {
+    fetchAllData();
+  }, []);
+
+  useEffect(() => {
+    const isLoading = Object.keys(loadingState).reduce( (q,i)=>q||loadingState[i], false);
+    setLoading(isLoading);
+  }, [loadingState]);
+
+  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Page: Data Mapping
+
+  const [dataToRender, setDataToRender] = useState<IBalanceRecord[]>([]);
+
+  const dataMapping = (): void => {
+    if (!rawDataBalance?.length || !rawDataCurrencies) return false; // Nothing to map
+
+    const data = rawDataBalance.map(
+      (record: IBalanceRecord) => ({
+        name: rawDataCurrencies[record.id] || record.id,
+        value: record.amount,
+      })
+    );
+
+    setDataToRender(data);
+  };
+
+  useEffect(() => {
+    dataMapping();
+  }, [rawDataBalance, rawDataCurrencies]);
+
+  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Page: Columns feature
+
   const [numberOfColumns, setNumberOfColumns] = useState(3);
+
+  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Page: Render
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -26,11 +112,50 @@ export const PageDataTable:FC = () => {
 
         <h1>Data Table</h1>
 
-        <TableExtendedColumns
-          columns={numberOfColumns}
-          data={RAW_DATA.map(o=>({name:o.id,value:o.amount}))}
-          textLabels={{headName:'NAME',headValue:'BALANCE'}}
-          />
+        <section className="mb-8">
+          <fieldset className="flex gap-1">
+            <button
+              className="p-2 text-sm border-2 rounded-sm disabled:opacity-[0.25]"
+              onClick={() => setNumberOfColumns(numberOfColumns - 1)}
+              disabled={numberOfColumns<2}
+              children={'Decrement columns'}
+              />
+            <button
+              className="p-2 text-sm border-2 rounded-sm disabled:opacity-[0.25]"
+              onClick={() => setNumberOfColumns(numberOfColumns + 1)}
+              disabled={numberOfColumns>3}
+              children={'Increment columns'}
+              />
+          </fieldset>
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-3xl font-bold mb-2">
+            Current /Balance
+          </h2>
+          <TableExtendedColumns
+            columns={numberOfColumns}
+            data={dataToRender}
+            textLabels={{headName:'NAME',headValue:'BALANCE'}}
+            />
+          {loadingState.balance && (<div>Loading data...</div>)}
+          {loadingError.balance && (<div>Data load error.</div>)}
+        </section>
+
+        <section className="mb-8">
+          <h2 className="text-3xl font-bold mb-2">
+            Current /Not-Found
+          </h2>
+          <TableExtendedColumns
+            columns={numberOfColumns}
+            data={rawDataNotFound || []}
+            textLabels={{headName:'NAME',headValue:'BALANCE'}}
+            />
+          {loadingState.notFound && (<div>Loading data...</div>)}
+          {loadingError.notFound && (<div>Error loading data</div>)}
+        </section>
+
+        <Loading isLoading={loading} />
 
       </main>
     </div>
@@ -40,7 +165,3 @@ export const PageDataTable:FC = () => {
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Export
 
 export default PageDataTable;
-
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Dev
-
-const RAW_DATA = [{"id":"1","amount":"452.67"},{"id":"2","amount":"895.34"},{"id":"4","amount":"678.90"},{"id":"5","amount":"234.56"},{"id":"6","amount":"789.12"},{"id":"7","amount":"345.67"},{"id":"8","amount":"456.78"},{"id":"9","amount":"987.65"},{"id":"10","amount":"321.45"},{"id":"11","amount":"543.21"},{"id":"12","amount":"876.54"},{"id":"13","amount":"234.89"},{"id":"14","amount":"675.43"},{"id":"15","amount":"432.10"},{"id":"16","amount":"567.89"},{"id":"17","amount":"345.12"},{"id":"18","amount":"123.98"},{"id":"19","amount":"765.43"},{"id":"20","amount":"654.32"},{"id":"21","amount":"876.21"},{"id":"22","amount":"456.12"},{"id":"23","amount":"987.32"},{"id":"24","amount":"123.76"}];

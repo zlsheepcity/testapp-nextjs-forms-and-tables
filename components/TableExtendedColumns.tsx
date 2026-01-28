@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 
 /**
  * TableExtendedColumns
- * {name, value} array rendered into columns
+ * {name, value} array rendered in columns
  * */
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Interfaces
@@ -114,12 +114,12 @@ export const TableExtendedColumns = ({
                   <td
                     className={classNames?.itemName||defaultClassNames.itemName}
                     itemindex={item.index}
-                    children={item.name}
+                    children={<div>{item.name}</div>}
                     />
                   <td
                     className={classNames?.itemValue||defaultClassNames.itemValue}
                     itemindex={item.index}
-                    children={item.value}
+                    children={<div>{item.value}</div>}
                     />
                 </Fragment>
                 ))
@@ -131,8 +131,6 @@ export const TableExtendedColumns = ({
     </table>
   );
 }
-
-
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Export
 
