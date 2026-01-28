@@ -2,11 +2,9 @@
 Basic example for nextjs app  
 v2026.1.27  
 
-# Dependencies
-
-### zod (validation library)
-https://zod.dev/  
-
+## Dependencies
+- nextjs framework (create-next-app), https://nextjs.org/  
+- zod (validation library), https://zod.dev/  
 
 ## Workflow snippets
 ```bash
