@@ -4,11 +4,11 @@
  * Let it be loading spinner fixed on screen side
  * */
 
-export interface ISideLoading {
+export interface ISideLoadingProps {
   isLoading?: boolean;
 }
 
-export const SideLoading:FC = ({isLoading = false}) => {
+export const SideLoading = ({isLoading = false}: ISideLoadingProps) => {
   return (
     <section className="fixed top-[32%] left-[0]">
       {isLoading && (

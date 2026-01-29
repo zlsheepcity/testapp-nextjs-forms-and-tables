@@ -1,8 +1,9 @@
 'use client';
 
-import { useActionState, useEffect, FC } from 'react';
+import { useActionState, useEffect, FC, ReactNode } from 'react';
 import { submitRegistration } from './actions';
 import { SideLoading as Loading } from '@/components/SideLoading';
+import { Oops } from '@/components/ui/ValidationError';
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Form
 
@@ -100,17 +101,6 @@ export const FormRegistration:FC<IFormRegistration> = ({onSuccess}) => {
   );
 
 };
-
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Helpers
-
- const Oops = ({children}: {children: ReactNode}) => {
-  return (
-    <p aria-live="polite" className="p-1 border-t-0">
-      <span className="inline-block w-2 h-2 mr-2 rounded-full align-middle bg-pink-600" />
-      {children}
-    </p>
-  );
- };
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Export
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FC, ChangeEvent, KeyUpEvent } from 'react';
+import { FC, ChangeEvent, KeyboardEvent } from 'react';
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Config
 
@@ -20,7 +20,7 @@ const STYLE_CLASS = {
 
 export interface IOTPForm {
   mask?: string;
-  submit: () => void;
+  submit: (code: string) => void;
 }
 
 export const OTPForm:FC<IOTPForm> = ({
@@ -29,7 +29,7 @@ export const OTPForm:FC<IOTPForm> = ({
 }) => {
   const [code, setCode] = useState('');
 
-  const isComplete = (code) => {
+  const isComplete = (code: string) => {
     if (code.length < mask.length) return false;
     else return true;
   };
@@ -50,26 +50,32 @@ export const OTPForm:FC<IOTPForm> = ({
 
     if (isComplete(newCode)) return; // else continue input
 
-    let nextInput = input.nextElementSibling;
+    let nextInput = (input.nextElementSibling as HTMLInputElement);
 
-    if (value.length > 1) { // support partial copypaste
+    if (nextInput && value.length > 1) { // support partial copypaste
       for (let step = 2; step <= value.length; step++ ) {
-        nextInput = nextInput.nextElementSibling;
+        nextInput = (nextInput?.nextElementSibling as HTMLInputElement) || null;
       }
     }
 
-    nextInput.disabled = false;
-    nextInput.focus();
+    if (nextInput) {
+      nextInput.disabled = false;
+      nextInput.focus();      
+    }
 
     return;
   };
 
-  const onKeyUpInputChar = (event: KeyUpEvent<HTMLInputElement>) => {
+  const onKeyUpInputChar = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Backspace" && code.length) { // Backspace feature
       setCode(code.slice(0, -1));
-      event.target.disabled = true;
-      event.target.previousElementSibling.disabled = false;
-      event.target.previousElementSibling.focus();
+      const char = event.target as HTMLInputElement;
+      const prev = char.previousElementSibling as HTMLInputElement
+      if (char && prev) {
+        char.disabled = true;
+        prev.disabled = false;
+        prev.focus();
+      }
     };
   };
 
@@ -98,8 +104,8 @@ export const OTPForm:FC<IOTPForm> = ({
 export interface IInputCharOTPForm {
   index: number;
   value?: string;
-  onChange: () => void;
-  onKeyUp: () => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onKeyUp: (event: KeyboardEvent<HTMLInputElement>) => void;
 }
 
 export const InputCharOTPForm:FC<IInputCharOTPForm> = ({

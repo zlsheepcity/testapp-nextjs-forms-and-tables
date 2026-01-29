@@ -1,4 +1,4 @@
-'use server';
+'use client'; // 'use server'; // Server Actions are not supported with static export.
 
 import { z as validationTool } from 'zod';
 
@@ -25,7 +25,7 @@ export async function submitRegistration(_: unknown, formData: FormData) {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
     repassword: formData.get('repassword') as string,
-    checkbox: formData.get('checkbox') as boolean,
+    checkbox: formData.get('checkbox') as string,
   };
 
   const { success, error, data } = validate(formValues);

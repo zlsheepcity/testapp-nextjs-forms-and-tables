@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, FC, Fragment } from 'react';
+import { useState, useEffect, FC, ReactNode } from 'react';
 import { SideLoading as Loading } from '@/components/SideLoading';
+import { Oops } from '@/components/ui/ValidationError';
 import { TableExtendedColumns } from '@/components/TableExtendedColumns';
 import {
   fetchDataBalance,
@@ -14,11 +15,11 @@ import {
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Interfaces
 
+export interface IO {
+  [key: string]: any;
+};
+
 export interface IBalanceRecord {
-  id?: string | number;
-  amount?: string | number;
-  name?: string | number;
-  value?: string | number;
   [key: string]: string | number;
 };
 
@@ -36,19 +37,19 @@ export const PageDataTable:FC = () => {
   const [rawDataCurrencies, setRawDataCurrencies] = useState<IDocument | null>(null);
   const [rawDataNotFound, setRawDataNotFound] = useState<IDocument[] | null>(null);
   const [loading, setLoading] = useState(false);
-  const [loadingState, setLoadingState] = useState({
+  const [loadingState, setLoadingState] = useState<IO>({
     balance: false,
     currencies: false,
     notFound: false,
   });
-  const [loadingError, setLoadingError] = useState({
+  const [loadingError, setLoadingError] = useState<IO>({
     balance: false,
     currencies: false,
     notFound: false,
   });
   
   // syntax shortcut
-  const forAll = (obj, val) => Object.keys(obj).reduce((o,i)=>({...o,[i]:val}),{});
+  const forAll = (obj:IO, val:any) => Object.keys(obj).reduce((o,i)=>({...o,[i]:val}),{});
 
   const fetchAllData = async () => {
     setLoadingState(forAll(loadingState, true));
@@ -81,9 +82,9 @@ export const PageDataTable:FC = () => {
 
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Page: Data Mapping
 
-  const [dataToRender, setDataToRender] = useState<IBalanceRecord[]>([]);
+  const [dataToRender, setDataToRender] = useState<IO[]>([]);
 
-  const dataMapping = (): void => {
+  const dataMapping = () => {
     if (!rawDataBalance?.length || !rawDataCurrencies) return false; // Nothing to map
 
     const data = rawDataBalance.map(
@@ -168,27 +169,6 @@ export const PageDataTable:FC = () => {
 
       </main>
     </div>
-  );
-};
-
-// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Helpers
-
-const Oops = ({
-  children,
-  isError = true,
-}: {
-  children: ReactNode,
-  isError?: boolean,
-}) => {
-  const bulletClassName = isError
-    ? 'inline-block w-2 h-2 mr-2 rounded-full align-middle bg-pink-600'
-    : 'inline-block w-2 h-2 mr-2 rounded-full align-middle bg-sky-600'
-    ;
-  return (
-    <p aria-live="polite" className="p-1 border-t-0">
-      <span className={bulletClassName} />
-      {children}
-    </p>
   );
 };
 

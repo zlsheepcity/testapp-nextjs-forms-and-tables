@@ -1,4 +1,4 @@
-'use server';
+'use client'; // 'use server'; // Server Actions are not supported with static export.
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Config
 
@@ -31,7 +31,7 @@ export interface IDataResponseDocument {
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Data Fetchers
 
 export const dataRequestCollection = async (
-  request:IDataRequest = {}
+  request:IDataRequest
 ):Promise<IDataResponseCollection> => {
   const {source, method} = request;
   const fetchURL = API_BASE_URL + source;

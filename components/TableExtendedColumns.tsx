@@ -10,8 +10,8 @@ import { Fragment } from 'react';
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Interfaces
 
 export interface ITableItem {
-  name: string | number;
-  value: string | number;
+  name?: string | number;
+  value?: string | number;
   index?: number;
   [key: string]: any;
 };
@@ -78,7 +78,7 @@ export const TableExtendedColumns = ({
   textLabels = {},
   classNames = {},
 }: ITableExtendedColumnsProps) => {
-  const rowOddOrEvenClassName = (key) => key % 2 === 0
+  const rowOddOrEvenClassName = (key: number) => key % 2 === 0
     ? classNames?.rowEven || defaultClassNames.rowEven
     : classNames?.rowOdd  || defaultClassNames.rowOdd
     ;
@@ -113,12 +113,10 @@ export const TableExtendedColumns = ({
                 <Fragment key={key}>
                   <td
                     className={classNames?.itemName||defaultClassNames.itemName}
-                    itemindex={item.index}
                     children={<div>{item.name}</div>}
                     />
                   <td
                     className={classNames?.itemValue||defaultClassNames.itemValue}
-                    itemindex={item.index}
                     children={<div>{item.value}</div>}
                     />
                 </Fragment>

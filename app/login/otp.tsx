@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FC, ChangeEvent, KeyUpEvent } from 'react';
 import { SideLoading as Loading } from '@/components/SideLoading';
 import { OTPForm } from "@/components/OTPForm";
 import {
@@ -11,16 +10,16 @@ import {
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Section
 
-export interface ISectionOTPForm {
+export interface ISectionOTPFormProps {
   onSuccess: () => void;
 }
 
-export const SectionOTPForm:FC<ISectionOTPForm> = ({onSuccess}) => {
+export const SectionOTPForm = ({onSuccess}: ISectionOTPFormProps) => {
   const [attempt, setAttempt] = useState(0);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const submitCode = async (code) => {
+  const submitCode = async (code: string) => {
     setLoading(true);
     const responce: IResponceOTPConfirm = await FetchOTPConfirm(code);
     setSuccess(responce?.success || false);

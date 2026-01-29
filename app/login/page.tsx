@@ -2,7 +2,7 @@
 
 import { useState, FC } from 'react';
 import { FormLogin, IFormLogin } from './form';
-import { SectionOTPForm, ISectionOTPForm } from './otp';
+import { SectionOTPForm, ISectionOTPFormProps } from './otp';
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Page
 

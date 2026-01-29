@@ -1,4 +1,4 @@
-'use server';
+'use client'; // 'use server'; // Server Actions are not supported with static export.
 
 import { z as validationTool } from 'zod';
 
@@ -11,6 +11,10 @@ const INCORRECT_PASSWORD_TEXT = 'Special case triggered: incorrect password';
 const HARDCODED_OTP_FAIL = '0000';
 const TIME_DELAY = 2000;
 
+interface IO {
+  [key: string]: any;
+};
+
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Validation config
 
 const validationSchema = validationTool.object({
@@ -22,7 +26,7 @@ const validate = validationSchema.safeParse;
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Action submit login
 
-export async function submitLogin(_: unknown, formData: FormData) {
+export async function submitLogin(_: unknown, formData: FormData): Promise<IO> {
   const formValues = {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
@@ -32,6 +36,7 @@ export async function submitLogin(_: unknown, formData: FormData) {
 
   if (!success) {
     return {
+      success: false,
       errors: error.flatten().fieldErrors,
       values: formValues,
     };
@@ -44,7 +49,7 @@ export async function submitLogin(_: unknown, formData: FormData) {
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Login response
 
-export async function mockedLoginResponse(loginValues: {[string]: any}) {
+export async function mockedLoginResponse(loginValues: {[key: string]: any}): Promise<IO> {
   const errors = [];
 
   // Feature incorrect email
@@ -78,8 +83,8 @@ export interface IResponceOTPConfirm {
   success: boolean;
 };
 
-export async function MockFetchOTPConfirm(code: string): IResponceOTPConfirm {
-  const isSuccess = (code) => code && code !== HARDCODED_OTP_FAIL;
+export async function MockFetchOTPConfirm(code: string): Promise<IResponceOTPConfirm> {
+  const isSuccess = (code: string) => code && code !== HARDCODED_OTP_FAIL;
   const responce = isSuccess(code)
     ? {success:true}
     : {success:false}
