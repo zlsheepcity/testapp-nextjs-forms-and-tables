@@ -1,4 +1,4 @@
-:HL["/testapp-nextjs-forms-and-tables/_next/static/chunks/7f86ec12a8d25157.css","style"]
-:HL["/testapp-nextjs-forms-and-tables/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/testapp-nextjs-forms-and-tables/_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"buildId":"RqAKQrtEDJDztOZYdTrqZ","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"datatable","paramType":null,"paramKey":"datatable","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+:HL["/testapp-nextjs-forms-and-tables/githubdemo/_next/static/chunks/d705d33ffea5dd76.css","style"]
+:HL["/testapp-nextjs-forms-and-tables/githubdemo/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/testapp-nextjs-forms-and-tables/githubdemo/_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"buildId":"q0TEkuPL4x0Eb9fZysWpI","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"datatable","paramType":null,"paramKey":"datatable","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
