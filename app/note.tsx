@@ -39,7 +39,7 @@ export const AsideNote = () => {
           This demo public URL
         </h3>
         <p className="max-w-md my-4 underline">
-          <a href="https://zlsheepcity.github.io/testapp-nextjs-forms-and-tables/githubdemo/">
+          <a href="https://zlsheepcity.github.io/testapp-nextjs-demo/">
             Link
           </a>
         </p>

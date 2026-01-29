@@ -4,7 +4,7 @@ v2026.1.27
 u2026.1.29  
 
 ## Live Demo
-[zlsheepcity.github.io/testapp-nextjs-forms-and-tables/githubdemo/](https://zlsheepcity.github.io/testapp-nextjs-forms-and-tables/githubdemo/)  
+[zlsheepcity.github.io/testapp-nextjs-demo//](https://zlsheepcity.github.io/testapp-nextjs-demo/)  
 
 ## Dependencies
 - nextjs framework (create-next-app), [https://nextjs.org/](https://nextjs.org/)  
