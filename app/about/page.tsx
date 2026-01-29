@@ -1,21 +1,41 @@
-export default function Page() {
+export default function PageAbout() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-16 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="flex min-h-screen items-center justify-center font-sans">
+      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-8 px-8 sm:items-start">
 
-        <h1>About</h1>
+        <header className="flex gap-4 mb-8">
+          <div className="max-w-xs text-2xl font-semibold leading-10 tracking-tight">
+            <a href="/" className="underline decoration-2">
+              Home
+            </a>
+          </div>
+          <h1 className="text-3xl font-semibold leading-10 tracking-tight">
+            About
+          </h1>
+        </header>
 
-        <nav>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/registration">Registration</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/datatable">Data Table</a></li>
-            <li><a href="/about">About</a></li>
-          </ul>
-        </nav>
+        <article className="my-8">
+
+          <h2 className="my-4 text-3xl font-semibold leading-10 tracking-tight">
+            Abstract            
+          </h2>
+
+          <p className="my-2">
+            Basic example for nextjs app.
+          </p>
+
+          <p className="my-2">
+            Git repository:<br/>
+            <a href="https://github.com/zlsheepcity/testapp-nextjs-forms-and-tables"
+              className="underline"
+              >
+              https://github.com/zlsheepcity/testapp-nextjs-forms-and-tables
+            </a>
+          </p>
+
+        </article>
 
       </main>
     </div>
   );
-}
+};

@@ -49,6 +49,16 @@ export const SectionOTPForm:FC<ISectionOTPForm> = ({onSuccess}) => {
         </div>
       )}
 
+      <section className="pt-32 pb-8">
+        <h2 className="text-2xl font-semibold leading-10 tracking-tight">
+          Copy-paste features
+        </h2>
+        <ul>
+          <li>0000 (incorrect)</li>
+          <li>5446 (will pass)</li>
+        </ul>
+      </section>
+
     </section>
   );
 };

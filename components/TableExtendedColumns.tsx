@@ -42,12 +42,12 @@ export interface ITableExtendedColumnsProps {
 
 const defaultClassNames: ITableClassNames = {
   table: '',
-  rowEven: 'bg-cyan-100',
+  rowEven: 'bg-cyan-950',
   rowOdd: '',
-  headName:  'ps-6 pe-2 py-1 text-left  text-xs border-b border-cyan-600',
-  headValue: 'ps-2 pe-6 py-1 text-right text-xs border-b border-cyan-600',
-  itemName:  'ps-6 pe-2 py-1 text-left  font-bold',
-  itemValue: 'ps-2 pe-6 py-1 text-right font-mono',
+  headName:  'ps-5 pe-2 py-1 text-left  text-xs border-b-2 border-cyan-900',
+  headValue: 'ps-2 pe-5 py-1 text-right text-xs border-b-2 border-cyan-900',
+  itemName:  'ps-5 pe-2 py-1 text-left  font-bold',
+  itemValue: 'ps-2 pe-5 py-1 text-right font-mono',
 };
 
 /**

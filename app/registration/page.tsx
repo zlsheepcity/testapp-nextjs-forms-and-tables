@@ -9,10 +9,21 @@ export const PageRegistration:FC = () => {
   const [success, setSuccess] = useState(false);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-16 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="flex min-h-screen items-center justify-center font-sans">
+      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-8 px-8 sm:items-start">
 
-        <h1>Registration form</h1>
+        <header className="flex gap-4 mb-8">
+          <div className="max-w-xs text-2xl font-semibold leading-10 tracking-tight">
+            <a href="/" className="underline decoration-2">
+              Home
+            </a>
+          </div>
+          <h1 className="text-3xl font-semibold leading-10 tracking-tight">
+            Registration form
+          </h1>
+        </header>
+
+        <h1></h1>
 
         {!success && (
           <FormRegistration onSuccess={()=>setSuccess(true)} />
@@ -20,15 +31,17 @@ export const PageRegistration:FC = () => {
 
         {success && (
           <article>
-            <h2>
+            <h2 className="text-3xl font-semibold leading-10 tracking-tight">
               Registration confirmed!
             </h2>
-            <a href="/login">
-              Continue to login
-            </a>
-            <a href="/registration">
-              Try again
-            </a>
+            <div className="flex gap-4 my-8">
+              <a href="/login" className="block p-2 rounded-md text-xl border-2 border-cyan-900 bg-cyan-900 hover:bg-cyan-800">
+                Continue to login
+              </a>
+              <a href="/registration" className="block p-2 rounded-md text-xl border-2 border-cyan-900 hover:bg-slate-800">
+                Try again
+              </a>
+            </div>
           </article>
         )}
 

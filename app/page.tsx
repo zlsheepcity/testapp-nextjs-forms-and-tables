@@ -1,17 +1,108 @@
-export default function Page() {
+import Image from "next/image";
+
+export default function PageHome() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-16 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="flex min-h-screen items-center justify-center font-sans">
+      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-8 px-8 sm:items-start">
 
-        <h1>Home</h1>
+        <header className="flex gap-4 mb-8">
+          <h1 className="text-3xl font-semibold leading-10 tracking-tight">
+            Home
+          </h1>
+        </header>
+        
 
-        <nav>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/registration">Registration</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/datatable">Data Table</a></li>
-            <li><a href="/about">About</a></li>
+        <nav className="w-full max-w-3xl grid items-start">
+          <ul className="
+            w-fit
+            grid grid-cols-2 grid-rows-2 gap-8 items-center justify-center
+            text-center font-semibold leading-10 tracking-tight
+            sm:text-3xl
+            ">
+            <li>
+              <a 
+                className="
+                  w-fit flex flex-col-reverse items-center justify-center p-2
+                  border-[0.2em] border-white rounded-[1em]
+                  text-black bg-blue-300 hover:bg-blue-400
+                "
+                href="/registration">
+                <span>
+                  Registration
+                </span>
+                <Image
+                  className=""
+                  src="/art/registration.svg"
+                  alt=":)"
+                  width={220}
+                  height={220}
+                  priority
+                />
+              </a>
+            </li>
+            <li>
+              <a 
+                className="
+                  w-fit flex flex-col-reverse items-center justify-center p-2
+                  border-[0.2em] border-white rounded-[1em]
+                  text-black bg-pink-300 hover:bg-pink-400
+                "
+                href="/login">
+                <span>
+                  Log In
+                </span>
+                <Image
+                  className=""
+                  src="/art/login.svg"
+                  alt=":)"
+                  width={220}
+                  height={220}
+                  priority
+                />
+              </a>
+            </li>
+            <li>
+              <a 
+                className="
+                  w-fit flex flex-col-reverse items-center justify-center p-2
+                  border-[0.2em] border-white rounded-[1em]
+                  text-black bg-amber-300 hover:bg-amber-400
+                "
+                href="/datatable">
+                <span>
+                  Data Table
+                </span>
+                <Image
+                  className=""
+                  src="/art/datatable.svg"
+                  alt=":)"
+                  width={220}
+                  height={220}
+                  priority
+                />
+              </a>
+            </li>
+            <li>
+              <a 
+                className="
+                  w-fit flex flex-col-reverse items-center justify-center p-2
+                  border-[0.2em] border-white rounded-[1em]
+                  text-black bg-emerald-300 hover:bg-emerald-400
+                "
+                href="/about">
+                <span>
+                  About
+                </span>
+                <Image
+                  className=""
+                  src="/art/about.svg"
+                  alt=":)"
+                  width={220}
+                  height={220}
+                  priority
+                />
+              </a>
+            </li>
           </ul>
         </nav>
 

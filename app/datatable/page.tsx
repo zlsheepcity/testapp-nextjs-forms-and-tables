@@ -107,21 +107,30 @@ export const PageDataTable:FC = () => {
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Page: Render
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-16 px-16 bg-white dark:bg-black sm:items-start">
+    <div className="flex min-h-screen items-center justify-center font-sans">
+      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-8 px-8 sm:items-start">
 
-        <h1>Data Table</h1>
+        <header className="flex gap-4 mb-8">
+          <div className="max-w-xs text-2xl font-semibold leading-10 tracking-tight">
+            <a href="/" className="underline decoration-2">
+              Home
+            </a>
+          </div>
+          <h1 className="text-3xl font-semibold leading-10 tracking-tight">
+            Data Table
+          </h1>
+        </header>
 
         <section className="mb-8">
-          <fieldset className="flex gap-1">
+          <fieldset className="flex gap-4">
             <button
-              className="p-2 text-sm border-2 rounded-sm disabled:opacity-[0.25]"
+              className="block p-2 rounded-md text-sm border-2 border-cyan-900 bg-cyan-900 hover:bg-cyan-800"
               onClick={() => setNumberOfColumns(numberOfColumns - 1)}
               disabled={numberOfColumns<2}
               children={'Decrement columns'}
               />
             <button
-              className="p-2 text-sm border-2 rounded-sm disabled:opacity-[0.25]"
+              className="block p-2 rounded-md text-sm border-2 border-cyan-900 bg-cyan-900 hover:bg-cyan-800"
               onClick={() => setNumberOfColumns(numberOfColumns + 1)}
               disabled={numberOfColumns>3}
               children={'Increment columns'}
@@ -130,7 +139,7 @@ export const PageDataTable:FC = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">
+          <h2 className="mb-4 text-3xl font-semibold leading-10 tracking-tight">
             Current /Balance
           </h2>
           <TableExtendedColumns
@@ -138,12 +147,12 @@ export const PageDataTable:FC = () => {
             data={dataToRender}
             textLabels={{headName:'NAME',headValue:'BALANCE'}}
             />
-          {loadingState.balance && (<div>Loading data...</div>)}
-          {loadingError.balance && (<div>Data load error.</div>)}
+          {loadingState.balance && (<Oops isError={false}>Loading data...</Oops>)}
+          {loadingError.balance && (<Oops>Error loading data</Oops>)}
         </section>
 
         <section className="mb-8">
-          <h2 className="text-3xl font-bold mb-2">
+          <h2 className="mb-4 text-3xl font-semibold leading-10 tracking-tight">
             Current /Not-Found
           </h2>
           <TableExtendedColumns
@@ -151,14 +160,35 @@ export const PageDataTable:FC = () => {
             data={rawDataNotFound || []}
             textLabels={{headName:'NAME',headValue:'BALANCE'}}
             />
-          {loadingState.notFound && (<div>Loading data...</div>)}
-          {loadingError.notFound && (<div>Error loading data</div>)}
+          {loadingState.notFound && (<Oops isError={false}>Loading data...</Oops>)}
+          {loadingError.notFound && (<Oops>Error loading data</Oops>)}
         </section>
 
         <Loading isLoading={loading} />
 
       </main>
     </div>
+  );
+};
+
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Helpers
+
+const Oops = ({
+  children,
+  isError = true,
+}: {
+  children: ReactNode,
+  isError?: boolean,
+}) => {
+  const bulletClassName = isError
+    ? 'inline-block w-2 h-2 mr-2 rounded-full align-middle bg-pink-600'
+    : 'inline-block w-2 h-2 mr-2 rounded-full align-middle bg-sky-600'
+    ;
+  return (
+    <p aria-live="polite" className="p-1 border-t-0">
+      <span className={bulletClassName} />
+      {children}
+    </p>
   );
 };
 

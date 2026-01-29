@@ -3,6 +3,7 @@
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Config
 
 const API_BASE_URL = 'https://67862af6f80b78923aa5ace3.mockapi.io/api/v1';
+const TIME_DELAY = 2000;
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Interfaces
 
@@ -85,7 +86,6 @@ export async function fetchDataNotFound():Promise<IDataResponseCollection> {
 export async function fetchDataCurrenciesMapping():Promise<IDataResponseDocument> {
   // Mocked processing ...
   await new Promise((resolve) => {
-    const TIME_DELAY = 1000;
     setTimeout(resolve, TIME_DELAY);
   });
   // ... ready!
@@ -121,5 +121,34 @@ const currenciesMapping = {
   "24": "PHP",
   "25": "IDR",
 };
+
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ save-dev
+
+// not used
+const HARDCODED_RESPONSE_BALANCE = [
+  {"id":"1","amount":"452.67"},
+  {"id":"2","amount":"895.34"},
+  {"id":"4","amount":"678.90"},
+  {"id":"5","amount":"234.56"},
+  {"id":"6","amount":"789.12"},
+  {"id":"7","amount":"345.67"},
+  {"id":"8","amount":"456.78"},
+  {"id":"9","amount":"987.65"},
+  {"id":"10","amount":"321.45"},
+  {"id":"11","amount":"543.21"},
+  {"id":"12","amount":"876.54"},
+  {"id":"13","amount":"234.89"},
+  {"id":"14","amount":"675.43"},
+  {"id":"15","amount":"432.10"},
+  {"id":"16","amount":"567.89"},
+  {"id":"17","amount":"345.12"},
+  {"id":"18","amount":"123.98"},
+  {"id":"19","amount":"765.43"},
+  {"id":"20","amount":"654.32"},
+  {"id":"21","amount":"876.21"},
+  {"id":"22","amount":"456.12"},
+  {"id":"23","amount":"987.32"},
+  {"id":"24","amount":"123.76"}
+];
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ eof
