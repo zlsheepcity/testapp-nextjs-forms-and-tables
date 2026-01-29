@@ -70,17 +70,7 @@ export const FormLogin:FC<IFormLogin> = ({onSuccess}) => {
 
 
       <Loading isLoading={formPending} />
-
-      <section className="py-8">
-        <h2 className="text-2xl font-semibold leading-10 tracking-tight">
-          Copy-paste features
-        </h2>
-        <ul>
-          <li>incorrect@email.com</li>
-          <li>incorrect-password</li>
-        </ul>
-      </section>
-
+      
     </form>
   );
 

@@ -14,17 +14,34 @@ export default function PageAbout() {
           </h1>
         </header>
 
-        <article className="my-8">
+        <article className="max-w-lg my-8">
 
-          <h2 className="my-4 text-3xl font-semibold leading-10 tracking-tight">
+          <h1 className="mt-4 text-3xl font-semibold leading-10 tracking-tight">
+            Testapp: Nextjs forms and tables
+          </h1>
+          <p className="mb-4">
+            January 27—29, 2026<br/>
+            Brasa, Riga
+          </p>
+
+          <p className="my-4">
+            Code author: ZL<br/>
+            Illustrations: ZL<br/>
+          </p>
+
+          <h2 className="my-4 text-2xl font-semibold leading-10 tracking-tight">
             Abstract            
           </h2>
 
-          <p className="my-2">
-            Basic example for nextjs app.
+          <p className="my-4">
+            Basic example for common features.
           </p>
 
-          <p className="my-2">
+          <h2 className="my-4 text-2xl font-semibold leading-10 tracking-tight">
+            Refferences
+          </h2>
+
+          <p className="my-4">
             Git repository:<br/>
             <a href="https://github.com/zlsheepcity/testapp-nextjs-forms-and-tables"
               className="underline"

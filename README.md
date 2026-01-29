@@ -1,6 +1,10 @@
 # testapp-nextjs-forms-and-tables
 Basic example for nextjs app  
 v2026.1.27  
+u2026.1.29  
+
+## Live Demo
+https://github.com/zlsheepcity/testapp-nextjs-forms-and-tables/githubdemo  
 
 ## Dependencies
 - nextjs framework (create-next-app), https://nextjs.org/  

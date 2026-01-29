@@ -1,16 +1,11 @@
 import Image from "next/image";
+import { AsideNote } from './note';
 
 export default function PageHome() {
   return (
-    <div className="flex min-h-screen items-center justify-center font-sans">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-8 px-8 sm:items-start">
-
-        <header className="flex gap-4 mb-8">
-          <h1 className="text-3xl font-semibold leading-10 tracking-tight">
-            Home
-          </h1>
-        </header>
-        
+    <div className="flex flex-col min-h-screen items-center justify-start font-sans xl:flex-row xl:justify-center xl:items-start">
+      <main className="flex w-full max-w-3xl flex-col items-center py-8 px-8 sm:items-start">
+    
 
         <nav className="w-full max-w-3xl grid items-start">
           <ul className="
@@ -107,6 +102,8 @@ export default function PageHome() {
         </nav>
 
       </main>
+      
+      <AsideNote />
     </div>
   );
 }

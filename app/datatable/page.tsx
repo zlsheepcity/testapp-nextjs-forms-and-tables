@@ -12,6 +12,7 @@ import {
   IDataResponseDocument,
   IDocument,
 } from './data';
+import { AsideNote } from './note';
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Interfaces
 
@@ -108,8 +109,8 @@ export const PageDataTable:FC = () => {
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ Page: Render
 
   return (
-    <div className="flex min-h-screen items-center justify-center font-sans">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-8 px-8 sm:items-start">
+    <div className="flex flex-col min-h-screen items-center justify-start font-sans xl:flex-row xl:justify-center xl:items-start">
+      <main className="flex w-full max-w-3xl flex-col items-center py-8 px-8 sm:items-start">
 
         <header className="flex gap-4 mb-8">
           <div className="max-w-xs text-2xl font-semibold leading-10 tracking-tight">
@@ -125,15 +126,15 @@ export const PageDataTable:FC = () => {
         <section className="mb-8">
           <fieldset className="flex gap-4">
             <button
-              className="block p-2 rounded-md text-sm border-2 border-cyan-900 bg-cyan-900 hover:bg-cyan-800"
+              className="block p-2 rounded-md text-sm border-2 border-cyan-900 bg-cyan-900 hover:bg-cyan-800 disabled:hover:bg-cyan-900 disabled:opacity-[0.25]"
               onClick={() => setNumberOfColumns(numberOfColumns - 1)}
               disabled={numberOfColumns<2}
               children={'Decrement columns'}
               />
             <button
-              className="block p-2 rounded-md text-sm border-2 border-cyan-900 bg-cyan-900 hover:bg-cyan-800"
+              className="block p-2 rounded-md text-sm border-2 border-cyan-900 bg-cyan-900 hover:bg-cyan-800 disabled:hover:bg-cyan-900 disabled:opacity-[0.25]"
               onClick={() => setNumberOfColumns(numberOfColumns + 1)}
-              disabled={numberOfColumns>3}
+              disabled={numberOfColumns>4}
               children={'Increment columns'}
               />
           </fieldset>
@@ -168,6 +169,8 @@ export const PageDataTable:FC = () => {
         <Loading isLoading={loading} />
 
       </main>
+      
+      <AsideNote />
     </div>
   );
 };
