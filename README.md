@@ -4,11 +4,11 @@ v2026.1.27
 u2026.1.29  
 
 ## Live Demo
-https://github.com/zlsheepcity/testapp-nextjs-forms-and-tables/githubdemo  
+[zlsheepcity.github.io/testapp-nextjs-forms-and-tables/githubdemo/](https://zlsheepcity.github.io/testapp-nextjs-forms-and-tables/githubdemo/)  
 
 ## Dependencies
-- nextjs framework (create-next-app), https://nextjs.org/  
-- zod (validation library), https://zod.dev/  
+- nextjs framework (create-next-app), [https://nextjs.org/](https://nextjs.org/)  
+- zod (validation library), [https://zod.dev/](https://zod.dev/)    
 
 ## Workflow snippets
 ```bash

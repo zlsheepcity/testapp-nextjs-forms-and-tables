@@ -28,18 +28,18 @@ export const AsideNote = () => {
       </header>
       <article>
         <h3 className="text-[2rem] leading-[2rem] my-4">
-          Github repository
+          Git repository
         </h3>
         <p className="max-w-md my-4 underline">
           <a href="https://github.com/zlsheepcity/testapp-nextjs-forms-and-tables">
-            /zlsheepcity/testapp-nextjs-forms-and-tables
+            github.com/zlsheepcity/testapp-nextjs-forms-and-tables
           </a>
         </p>
         <h3 className="text-[2rem] leading-[2rem] my-4">
           This demo public URL
         </h3>
         <p className="max-w-md my-4 underline">
-          <a href="https://github.com/zlsheepcity/testapp-nextjs-forms-and-tables/githubdemo">
+          <a href="https://zlsheepcity.github.io/testapp-nextjs-forms-and-tables/githubdemo/">
             Link
           </a>
         </p>
